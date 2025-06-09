@@ -15,6 +15,7 @@ export default function Cart () {
     , 0);
 
     function handleCloseCart() {
+        console.log("Modal close triggered");
         userProgressCtx.hideCart();
     }
 

@@ -1,4 +1,4 @@
-import { useContext, useActionState } from "react";
+import { useContext, useActionState, useEffect,useState } from "react";
 
 import Modal from "./UI/Modal";
 import CartContext from "./store/CartContext";
@@ -19,9 +19,20 @@ export default function Checkout() {
   // This component handles the checkout process}
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
+const [modalOpen, setModalOpen] = useState(false);
+
+useEffect(() => {
+  if(userProgressCtx.progress === "checkout") {
+    setModalOpen(true);
+  } else {
+    setModalOpen(false);
+  }
+}, [userProgressCtx.progress]);
+
+console.log(modalOpen);
 
   const { data, error, sendRequest } = useHttp(
-    "http://localhost:3000.orders",
+    "http://localhost:3001/orders",
     requestConfig
   );
 
@@ -31,12 +42,14 @@ export default function Checkout() {
   );
 
   function handleClose() {
+      console.log("Modal close triggered");
     // This function is called when the user clicks the close button
     // It hides the checkout modal
     userProgressCtx.hideCheckout();
   }
 
   function handleFinish() {
+    console.log("Modal finish triggered");
     // This function is called when the user clicks the finish button
     // It hides the checkout modal and clears the cart and the user progress context
     userProgressCtx.hideCheckout();
@@ -75,7 +88,12 @@ export default function Checkout() {
   }
   if (data && !error) {
     // If the order was submitted successfully, show a success message
-    <Modal open={userProgressCtx.progress === "checkout"} onClose={handleClose}>
+console.log("Modal open prop:", userProgressCtx.progress === "checkout");
+console.log("Data received:", data);
+console.log("Error state:", error);
+
+return(
+    <Modal open={modalOpen} onClose={handleClose}>
       <h2>Success!</h2>
       <p>Your order was submitted successfully.</p>
       <p>
@@ -85,7 +103,7 @@ export default function Checkout() {
       <p className="modal-actions">
         <Button onClick={handleFinish}>Okay</Button>
       </p>
-    </Modal>;
+    </Modal>)
   }
   return (
     <Modal open={userProgressCtx.progress === "checkout"} onClose={handleClose}>

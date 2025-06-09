@@ -68,4 +68,6 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(3000);
+app.listen(3001, () => {
+  console.log("Backend running on http://localhost:3001");
+});
