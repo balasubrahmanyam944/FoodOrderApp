@@ -59,6 +59,9 @@ app.post('/orders', async (req, res) => {
   await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
   res.status(201).json({ message: 'Order created!' });
 });
+app.get('/', (req, res) => {
+  res.send('Food Order API is live!');
+});
 
 app.use((req, res) => {
   if (req.method === 'OPTIONS') {
