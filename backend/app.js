@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
-
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(bodyParser.json());
@@ -68,6 +68,6 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(3001, () => {
-  console.log("Backend running on http://localhost:3001");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
