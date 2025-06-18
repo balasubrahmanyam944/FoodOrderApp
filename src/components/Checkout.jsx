@@ -32,7 +32,7 @@ useEffect(() => {
 console.log(modalOpen);
 
   const { data, error, sendRequest } = useHttp(
-    "http://localhost:3001/orders",
+    "https://foodorder-backend-jif9.onrender.com/orders",
     requestConfig
   );
 
