@@ -6,6 +6,9 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: process.env.PORT || 4173,
-    allowedHosts: ['foodorder-backend-jif9.onrender.com'], // ✅ Your backend URL
+    allowedHosts: [
+      'foodorder-backend-jif9.onrender.com', // ✅ This is the one you want
+      '.onrender.com'                         // (Optional) allows any *.onrender.com
+    ],
   },
 });
