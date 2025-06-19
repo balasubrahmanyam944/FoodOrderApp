@@ -18,7 +18,7 @@ export default function MealItem({ meal }) {
     // Hide the modal after 1 second
     setTimeout(() => {
       setShowModal(false);
-    }, 1000);
+    }, 500);
   }
 
   return (
