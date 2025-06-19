@@ -102,7 +102,25 @@ h1 {
   margin: 0;
   border-radius: 4px;
 }
+.modal1 {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffab04;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 1000; /* Make sure it appears above other content */
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
 
+/* Optional: Add a fade-out effect */
+.modal1.fade-out {
+  opacity: 0;
+}
 .meal-item-actions {
   margin-bottom: 1.5rem;
 }
